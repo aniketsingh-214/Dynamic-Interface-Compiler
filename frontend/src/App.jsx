@@ -17,12 +17,10 @@ function App() {
   const [jsonInput, setJsonInput] = useLocalStorage('schema', defaultSchema);
   const [parseError, setParseError] = useState(null);
 
-  // We use useMemo to only re-parse the JSON when the input string changes.
-  // This is a performance optimization.
   const schema = useMemo(() => {
     try {
       const parsed = JSON.parse(jsonInput);
-      setParseError(null); // Clear previous errors if parsing is successful
+      setParseError(null); 
       return parsed;
     } catch (e) {
       setParseError(`Invalid JSON: ${e.message}`);
@@ -34,7 +32,6 @@ function App() {
     <div className="min-h-screen bg-gray-100 p-8">
       <header className="text-center mb-8">
         <h1 className="text-5xl font-extrabold text-gray-800">Dynamic Interface Compiler</h1>
-        <p className="text-lg text-gray-600 mt-2">Define UI with JSON on the left, see it rendered live on the right.</p>
       </header>
       <main className="grid grid-cols-1 md:grid-cols-2 gap-8 h-[70vh]">
         <JsonEditor value={jsonInput} onChange={setJsonInput} error={parseError} />
