@@ -1,4 +1,3 @@
-// src/components/blocks/FormComponent.jsx
 import React, { useState } from 'react';
 import { safeExecute } from '../../lib/sandbox';
 
@@ -22,17 +21,14 @@ function FormComponent({ fields = [], submitText = 'Submit', onSubmit: onSubmitL
     setError('');
     setSuccess('');
 
-    // Execute user-defined logic from the schema
     const logicResult = safeExecute(onSubmitLogic, values);
 
     if (typeof logicResult === 'string') {
-      // If the logic returns a string, treat it as an error message
       setError(logicResult);
     } else {
-      // Otherwise, submission is successful
       console.log('Form Submitted:', values);
       setSuccess('Form submitted successfully! Check the console.');
-      setTimeout(() => setSuccess(''), 3000); // Clear message after 3s
+      setTimeout(() => setSuccess(''), 3000); 
     }
   };
 
